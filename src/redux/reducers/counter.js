@@ -1,4 +1,6 @@
-const INCREMENT = 'redux-example/counter/INCREMENT';
+import {
+  COUNTER_INCREMENT
+} from '../actions/ActionTypes';
 
 const initialState = {
   count: 0
@@ -6,7 +8,7 @@ const initialState = {
 
 export default function reducer(state = initialState, action = {}) {
   switch (action.type) {
-    case INCREMENT:
+    case COUNTER_INCREMENT:
       const {count} = state;
       return {
         count: count + 1
@@ -16,8 +18,3 @@ export default function reducer(state = initialState, action = {}) {
   }
 }
 
-export function increment() {
-  return {
-    type: INCREMENT
-  };
-}

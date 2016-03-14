@@ -1,11 +1,13 @@
-const LOAD = 'redux-example/widgets/LOAD';
-const LOAD_SUCCESS = 'redux-example/widgets/LOAD_SUCCESS';
-const LOAD_FAIL = 'redux-example/widgets/LOAD_FAIL';
-const EDIT_START = 'redux-example/widgets/EDIT_START';
-const EDIT_STOP = 'redux-example/widgets/EDIT_STOP';
-const SAVE = 'redux-example/widgets/SAVE';
-const SAVE_SUCCESS = 'redux-example/widgets/SAVE_SUCCESS';
-const SAVE_FAIL = 'redux-example/widgets/SAVE_FAIL';
+import {
+  WIDGETS_EDIT_START,
+  WIDGETS_EDIT_STOP,
+  WIDGETS_LOAD,
+  WIDGETS_LOAD_FAIL,
+  WIDGETS_LOAD_SUCCESS,
+  WIDGETS_SAVE,
+  WIDGETS_SAVE_FAIL,
+  WIDGETS_SAVE_SUCCESS
+} from './../actions/ActionTypes';
 
 const initialState = {
   loaded: false,
@@ -15,12 +17,12 @@ const initialState = {
 
 export default function reducer(state = initialState, action = {}) {
   switch (action.type) {
-    case LOAD:
+    case WIDGETS_LOAD:
       return {
         ...state,
         loading: true
       };
-    case LOAD_SUCCESS:
+    case WIDGETS_LOAD_SUCCESS:
       return {
         ...state,
         loading: false,
@@ -28,7 +30,7 @@ export default function reducer(state = initialState, action = {}) {
         data: action.result,
         error: null
       };
-    case LOAD_FAIL:
+    case WIDGETS_LOAD_FAIL:
       return {
         ...state,
         loading: false,
@@ -36,7 +38,7 @@ export default function reducer(state = initialState, action = {}) {
         data: null,
         error: action.error
       };
-    case EDIT_START:
+    case WIDGETS_EDIT_START:
       return {
         ...state,
         editing: {
@@ -44,7 +46,7 @@ export default function reducer(state = initialState, action = {}) {
           [action.id]: true
         }
       };
-    case EDIT_STOP:
+    case WIDGETS_EDIT_STOP:
       return {
         ...state,
         editing: {
@@ -52,9 +54,9 @@ export default function reducer(state = initialState, action = {}) {
           [action.id]: false
         }
       };
-    case SAVE:
+    case WIDGETS_SAVE:
       return state; // 'saving' flag handled by redux-form
-    case SAVE_SUCCESS:
+    case WIDGETS_SAVE_SUCCESS:
       const data = [...state.data];
       data[action.result.id - 1] = action.result;
       return {
@@ -69,7 +71,7 @@ export default function reducer(state = initialState, action = {}) {
           [action.id]: null
         }
       };
-    case SAVE_FAIL:
+    case WIDGETS_SAVE_FAIL:
       return typeof action.error === 'string' ? {
         ...state,
         saveError: {
@@ -80,33 +82,4 @@ export default function reducer(state = initialState, action = {}) {
     default:
       return state;
   }
-}
-
-export function isLoaded(globalState) {
-  return globalState.widgets && globalState.widgets.loaded;
-}
-
-export function load() {
-  return {
-    types: [LOAD, LOAD_SUCCESS, LOAD_FAIL],
-    promise: (client) => client.get('/widget/load/param1/param2') // params not used, just shown as demonstration
-  };
-}
-
-export function save(widget) {
-  return {
-    types: [SAVE, SAVE_SUCCESS, SAVE_FAIL],
-    id: widget.id,
-    promise: (client) => client.post('/widget/update', {
-      data: widget
-    })
-  };
-}
-
-export function editStart(id) {
-  return { type: EDIT_START, id };
-}
-
-export function editStop(id) {
-  return { type: EDIT_STOP, id };
 }
