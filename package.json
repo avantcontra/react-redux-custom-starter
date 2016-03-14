@@ -1,14 +1,14 @@
 {
-  "name": "react-redux-universal-hot-example",
-  "description": "Example of an isomorphic (universal) webapp using react redux and hot reloading",
-  "author": "Erik Rasmussen <rasmussenerik@gmail.com> (http://github.com/erikras)",
+  "name": "react-redux-custom-starter",
+  "description": "Fork from react-redux-universal-hot-example, without DUCKS.",
+  "author": "Contra (http://github.com/avantcontra)",
   "license": "MIT",
-  "version": "0.9.0",
+  "version": "0.0.2",
   "repository": {
     "type": "git",
-    "url": "https://github.com/erikras/react-redux-universal-hot-example"
+    "url": "https://github.com/avantcontra/react-redux-custom-starter"
   },
-  "homepage": "https://github.com/erikras/react-redux-universal-hot-example",
+  "homepage": "https://github.com/avantcontra/react-redux-custom-starter",
   "keywords": [
     "react",
     "isomorphic",
