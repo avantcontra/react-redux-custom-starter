@@ -1,3 +1,7 @@
+Forked from [react-redux-universal-hot-example](https://github.com/erikras/react-redux-universal-hot-example), but without the [Ducks bundles](https://github.com/erikras/ducks-modular-redux).
+
+
+---------
 # React Redux Universal Hot Example
 
 [![build status](https://img.shields.io/travis/erikras/react-redux-universal-hot-example/master.svg?style=flat-square)](https://travis-ci.org/erikras/react-redux-universal-hot-example)
